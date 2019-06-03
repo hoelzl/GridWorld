@@ -1,4 +1,4 @@
-package level;
+package gridworld.level;
 
 import gridworld.core.Difficulty;
 import gridworld.core.LevelPopulationStrategy;

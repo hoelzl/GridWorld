@@ -1,4 +1,4 @@
-package level;
+package gridworld.level;
 
 import gridworld.character.NonPlayerCharacterBuilder;
 import gridworld.core.*;
