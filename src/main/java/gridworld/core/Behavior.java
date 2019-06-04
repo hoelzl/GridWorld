@@ -11,7 +11,7 @@ public interface Behavior {
     default void tick(NonPlayerCharacter nonPlayerCharacter, Level level) {
         List<Command> commands =
                 getCommandsForCurrentTurn(nonPlayerCharacter, level);
-        for (var command : commands) {
+        for (Command command : commands) {
             command.execute();
         }
     }

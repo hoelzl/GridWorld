@@ -1,11 +1,9 @@
 package gridworld.game;
 
 import gridworld.behaviors.Behavior_MoveRandomly;
+import gridworld.character.Character;
 import gridworld.character.Player;
-import gridworld.core.CharacterObserver;
-import gridworld.core.Difficulty;
-import gridworld.core.Level;
-import gridworld.core.LevelFactory;
+import gridworld.core.*;
 import gridworld.level.LevelPopulationStrategy_DistributeRandomElements;
 
 import java.util.List;
@@ -13,17 +11,17 @@ import java.util.List;
 public class Game {
     public Game(Difficulty difficulty, int width, int height,
                 List<CharacterObserver> observers) {
-        var behavior = new Behavior_MoveRandomly();
-        var populationStrategy =
+        Behavior behavior = new Behavior_MoveRandomly();
+        LevelPopulationStrategy populationStrategy =
                 new LevelPopulationStrategy_DistributeRandomElements(behavior);
-        var levelFactory = new LevelFactory(populationStrategy);
+        LevelFactory levelFactory = new LevelFactory(populationStrategy);
         level = levelFactory.createLevel(difficulty, width, height, observers);
         player = new Player("Player", level.get(1, 1));
     }
 
     public void tick() {
         numTicks++;
-        for (var character : level.getCharacters()) {
+        for (Character character : level.getCharacters()) {
             character.tick();
         }
         if (numTicks > 5) {

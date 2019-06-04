@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-@SuppressWarnings("WeakerAccess")
 public class Level {
     Level(int width, int height) {
         this.width = width;
@@ -28,6 +27,7 @@ public class Level {
         characterObservers.add(observer);
     }
 
+    @SuppressWarnings("WeakerAccess")
     public void registerAll(List<CharacterObserver> observers) {
         characterObservers.addAll(observers);
     }
@@ -39,7 +39,7 @@ public class Level {
     public void noteCharacterCreation(Character character) {
         assert character != null;
         addCharacter(character);
-        for (var observer : characterObservers) {
+        for (CharacterObserver observer : characterObservers) {
             observer.onCharacterCreation(character);
         }
     }
@@ -48,14 +48,14 @@ public class Level {
         assert character != null;
         assert newLocation != null;
 
-        for (var observer : characterObservers) {
+        for (CharacterObserver observer : characterObservers) {
             observer.onCharacterMove(character, newLocation);
         }
     }
 
     public void noteCharacterDeath(Character character) {
         assert character != null;
-        for (var observer : characterObservers) {
+        for (CharacterObserver observer : characterObservers) {
             observer.onCharacterDeath(character);
         }
         removeCharacter(character);

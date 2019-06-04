@@ -39,7 +39,7 @@ public class NonPlayerCharacterBuilder {
         assert name != null && location != null;
         assert attitudeTowardsPlayer != null;
 
-        var result =
+        NonPlayerCharacter result =
                 new NonPlayerCharacter(name, location, attitudeTowardsPlayer,
                         behavior);
         reset();
@@ -66,6 +66,7 @@ public class NonPlayerCharacterBuilder {
         this.behavior = behavior;
         return this;
     }
+
     private Attitude attitudeTowardsPlayer;
     private Behavior defaultBehavior;
     private Behavior behavior;
