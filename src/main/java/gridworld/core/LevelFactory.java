@@ -6,7 +6,7 @@ public class LevelFactory {
     }
 
     public Level createLevel(Difficulty difficulty, int width, int height) {
-        var level = new Level(width, height);
+        Level level = new Level(width, height);
         populationStrategy.populateLevel(level, difficulty);
         return level;
     }
