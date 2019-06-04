@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-class CharacterTest {
+class AbstractCharacterTest {
 
     @Test
     void constructor_triggersObserverUpdate() {
         CharacterObserverSpy observer = new CharacterObserverSpy();
         level.register(observer);
 
-        unit = new TestCharacter("Test Character", level.get(3, 4));
+        unit = new TestCharacter("Test AbstractCharacter", level.get(3, 4));
 
         assertThat(observer.wasOnCharacterCreationCalled, is(true));
         assertThat(observer.wasOnCharacterMoveCalled, is(false));
@@ -81,6 +81,6 @@ class CharacterTest {
     private Level level =
             new LevelFactory(new LevelPopulationStrategySpy()).createLevel(
                     Difficulty.MEDIUM, 12, 8);
-    private Character unit =
-            new TestCharacter("Test Character", level.get(initialW, initialH));
+    private GameCharacter unit = new TestCharacter("Test AbstractCharacter",
+            level.get(initialW, initialH));
 }

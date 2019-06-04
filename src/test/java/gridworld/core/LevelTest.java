@@ -1,6 +1,6 @@
 package gridworld.core;
 
-import gridworld.character.NonPlayerCharacter;
+import gridworld.character.AbstractCharacter;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -10,9 +10,9 @@ class LevelTest {
 
     @Test
     void noteCharacterMove() {
-        NonPlayerCharacter testCharacter =
-                new NonPlayerCharacter("test character", unit.get(0, 0),
-                        Attitude.NEUTRAL, null);
+        GameCharacter testCharacter =
+                new AbstractCharacter("test character", unit.get(0, 0)) {
+                };
         Location newLocation = unit.get(0, 1);
         CharacterObserverSpy observer = new CharacterObserverSpy();
         unit.register(observer);
