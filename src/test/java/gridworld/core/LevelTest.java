@@ -1,6 +1,5 @@
 package gridworld.core;
 
-import gridworld.character.NonPlayerCharacter;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -8,23 +7,6 @@ import static org.hamcrest.Matchers.is;
 
 class LevelTest {
 
-    @Test
-    void noteCharacterMove() {
-        NonPlayerCharacter testCharacter =
-                new NonPlayerCharacter("test character", unit.get(0, 0),
-                        Attitude.NEUTRAL, null);
-        Location newLocation = unit.get(0, 1);
-        CharacterObserverSpy observer = new CharacterObserverSpy();
-        unit.register(observer);
-
-        unit.noteCharacterMove(testCharacter, newLocation);
-
-        assertThat(observer.wasOnCharacterCreationCalled, is(false));
-        assertThat(observer.wasOnCharacterMoveCalled, is(true));
-        assertThat(observer.wasOnCharacterDeathCalled, is(false));
-        assertThat(observer.character, is(testCharacter));
-        assertThat(observer.newLocation, is(newLocation));
-    }
 
     @Test
     void size() {

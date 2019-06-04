@@ -1,7 +1,5 @@
 package gridworld.core;
 
-import gridworld.character.Character;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,10 +35,6 @@ public class Location {
         return characters;
     }
 
-    private Level level;
-    private Map<Direction, Location> neighbors = new HashMap<>();
-    private List<Character> characters = new ArrayList<>();
-
     public int getW() {
         return w;
     }
@@ -57,6 +51,9 @@ public class Location {
         this.h = h;
     }
 
+    private Level level;
+    private Map<Direction, Location> neighbors = new HashMap<>();
+    private List<Character> characters = new ArrayList<>();
     private int w;
     private int h;
 }

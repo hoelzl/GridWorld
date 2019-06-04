@@ -1,12 +1,10 @@
 package gridworld.core;
 
-import gridworld.character.Character;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-@SuppressWarnings("WeakerAccess")
 public class Level {
     Level(int width, int height) {
         this.width = width;
@@ -22,43 +20,6 @@ public class Level {
                 computeNeighborsForLocationAt(w, h);
             }
         }
-    }
-
-    public void register(CharacterObserver observer) {
-        characterObservers.add(observer);
-    }
-
-    public void registerAll(List<CharacterObserver> observers) {
-        characterObservers.addAll(observers);
-    }
-
-    public void unregister(CharacterObserver observer) {
-        characterObservers.remove(observer);
-    }
-
-    public void noteCharacterCreation(Character character) {
-        assert character != null;
-        addCharacter(character);
-        for (var observer : characterObservers) {
-            observer.onCharacterCreation(character);
-        }
-    }
-
-    public void noteCharacterMove(Character character, Location newLocation) {
-        assert character != null;
-        assert newLocation != null;
-
-        for (var observer : characterObservers) {
-            observer.onCharacterMove(character, newLocation);
-        }
-    }
-
-    public void noteCharacterDeath(Character character) {
-        assert character != null;
-        for (var observer : characterObservers) {
-            observer.onCharacterDeath(character);
-        }
-        removeCharacter(character);
     }
 
     private void computeNeighborsForLocationAt(int w, int h) {
@@ -98,21 +59,7 @@ public class Level {
         return height;
     }
 
-    private void addCharacter(Character character) {
-        characters.add(character);
-    }
-
-    private void removeCharacter(Character character) {
-        characters.remove(character);
-    }
-
-    public List<Character> getCharacters() {
-        return characters;
-    }
-
     private int width;
     private int height;
     private List<Location> board;
-    private List<Character> characters = new ArrayList<>();
-    private List<CharacterObserver> characterObservers = new ArrayList<>();
 }
