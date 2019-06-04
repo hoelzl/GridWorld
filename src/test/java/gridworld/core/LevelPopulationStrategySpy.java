@@ -2,7 +2,7 @@ package gridworld.core;
 
 public class LevelPopulationStrategySpy implements LevelPopulationStrategy {
     @Override
-    public void populateLevel(Difficulty difficulty) {
+    public void populateLevel(Level level, Difficulty difficulty) {
         wasPopulateLevelCalled = true;
     }
 

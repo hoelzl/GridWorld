@@ -40,4 +40,23 @@ public class Location {
     private Level level;
     private Map<Direction, Location> neighbors = new HashMap<>();
     private List<Character> characters = new ArrayList<>();
+
+    public int getW() {
+        return w;
+    }
+
+    void setW(int w) {
+        this.w = w;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    void setH(int h) {
+        this.h = h;
+    }
+
+    private int w;
+    private int h;
 }

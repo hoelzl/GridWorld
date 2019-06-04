@@ -18,10 +18,5 @@ public class Behavior_MoveRandomly implements Behavior {
                         movementProbability));
     }
 
-    @Override
-    public void tick(NonPlayerCharacter nonPlayerCharacter, Level level) {
-
-    }
-
     private Double movementProbability = 0.5;
 }

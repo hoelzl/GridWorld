@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+@SuppressWarnings("WeakerAccess")
 public class Level {
     Level(int width, int height) {
         this.width = width;
@@ -16,6 +17,8 @@ public class Level {
         }
         for (int w = 0; w < width; w++) {
             for (int h = 0; h < height; h++) {
+                get(w, h).setW(w);
+                get(w, h).setH(h);
                 computeNeighborsForLocationAt(w, h);
             }
         }
@@ -25,11 +28,16 @@ public class Level {
         characterObservers.add(observer);
     }
 
+    public void registerAll(List<CharacterObserver> observers) {
+        characterObservers.addAll(observers);
+    }
+
     public void unregister(CharacterObserver observer) {
         characterObservers.remove(observer);
     }
 
     public void noteCharacterCreation(Character character) {
+        assert character != null;
         addCharacter(character);
         for (var observer : characterObservers) {
             observer.onCharacterCreation(character);
@@ -37,12 +45,16 @@ public class Level {
     }
 
     public void noteCharacterMove(Character character, Location newLocation) {
+        assert character != null;
+        assert newLocation != null;
+
         for (var observer : characterObservers) {
             observer.onCharacterMove(character, newLocation);
         }
     }
 
     public void noteCharacterDeath(Character character) {
+        assert character != null;
         for (var observer : characterObservers) {
             observer.onCharacterDeath(character);
         }
@@ -54,13 +66,11 @@ public class Level {
                 () -> get(w, h + 1));
         computeNeighbor(Direction.EAST, w, h, () -> w < width - 1,
                 () -> get(w + 1, h));
-        computeNeighbor(Direction.SOUTH, w, h, () -> h > 0,
-                () -> get(w, h - 1));
+        computeNeighbor(Direction.SOUTH, w, h, () -> h > 0, () -> get(w, h - 1));
         computeNeighbor(Direction.WEST, w, h, () -> w > 0, () -> get(w - 1, h));
     }
 
-    private void computeNeighbor(Direction direction, int w, int h,
-                                 Supplier<Boolean> test,
+    private void computeNeighbor(Direction direction, int w, int h, Supplier<Boolean> test,
                                  Supplier<Location> neighbor) {
         Location location = get(w, h);
         if (test.get()) {

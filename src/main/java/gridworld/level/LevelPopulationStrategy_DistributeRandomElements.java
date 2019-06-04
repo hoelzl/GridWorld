@@ -9,51 +9,56 @@ import java.util.Random;
 public class LevelPopulationStrategy_DistributeRandomElements
         implements LevelPopulationStrategy {
 
-    public LevelPopulationStrategy_DistributeRandomElements(Level level,
-                                                            Behavior behavior) {
-        this.level = level;
-        this.builder = new NonPlayerCharacterBuilder(level, behavior);
-    }
-
-    public LevelPopulationStrategy_DistributeRandomElements(Level level) {
-        this(level, null);
+    public LevelPopulationStrategy_DistributeRandomElements(Behavior behavior) {
+        this.behavior = behavior;
     }
 
     @Override
-    public void populateLevel(Difficulty difficulty) {
+    public void populateLevel(Level level, Difficulty difficulty) {
         final int levelSize = level.size();
+        NonPlayerCharacterBuilder builder =
+                new NonPlayerCharacterBuilder(level, behavior);
+
         final double hostileNpcs = 0.05 * levelSize;
         final double neutralNpcs = 0.05 * levelSize;
         final double friendlyNpcs = 0.1 * levelSize;
 
-        addRandomNpcs((int) neutralNpcs, Attitude.NEUTRAL);
+        addRandomNpcs(builder, (int) neutralNpcs, Attitude.NEUTRAL);
         switch (difficulty) {
             case EASY:
-                addRandomNpcs((int) (0.5 * hostileNpcs), Attitude.HOSTILE);
-                addRandomNpcs((int) (2 * friendlyNpcs), Attitude.FRIENDLY);
+                addRandomNpcs(builder, (int) (0.5 * hostileNpcs),
+                        Attitude.HOSTILE);
+                addRandomNpcs(builder, (int) (2 * friendlyNpcs),
+                        Attitude.FRIENDLY);
                 break;
             case MEDIUM:
-                addRandomNpcs((int) hostileNpcs, Attitude.HOSTILE);
-                addRandomNpcs((int) friendlyNpcs, Attitude.FRIENDLY);
+                addRandomNpcs(builder, (int) hostileNpcs, Attitude.HOSTILE);
+                addRandomNpcs(builder, (int) friendlyNpcs, Attitude.FRIENDLY);
                 break;
             case HARD:
-                addRandomNpcs((int) (2 * hostileNpcs), Attitude.HOSTILE);
-                addRandomNpcs((int) (0.5 * friendlyNpcs), Attitude.FRIENDLY);
+                addRandomNpcs(builder, (int) (2 * hostileNpcs),
+                        Attitude.HOSTILE);
+                addRandomNpcs(builder, (int) (0.5 * friendlyNpcs),
+                        Attitude.FRIENDLY);
                 break;
             case IMPOSSIBLE:
-                addRandomNpcs((int) (5 * hostileNpcs), Attitude.HOSTILE);
-                addRandomNpcs((int) (0.5 * friendlyNpcs), Attitude.FRIENDLY);
+                addRandomNpcs(builder, (int) (5 * hostileNpcs),
+                        Attitude.HOSTILE);
+                addRandomNpcs(builder, (int) (0.5 * friendlyNpcs),
+                        Attitude.FRIENDLY);
                 break;
         }
     }
 
-    void addRandomNpcs(int numNpcs, Attitude attitude) {
+    void addRandomNpcs(NonPlayerCharacterBuilder builder, int numNpcs,
+                       Attitude attitude) {
+        assert attitude != null;
+
         for (int i = 0; i < numNpcs; i++) {
             builder.setAttitudeTowardsPlayer(attitude).build();
         }
     }
 
-    private Random rand = new Random();
-    private Level level;
-    private NonPlayerCharacterBuilder builder;
+    private final Behavior behavior;
+    private final Random rand = new Random();
 }

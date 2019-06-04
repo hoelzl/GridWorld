@@ -6,8 +6,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class NonPlayerCharacter extends Character {
-    public NonPlayerCharacter(String name, Location location) {
+    public NonPlayerCharacter(String name, Location location,
+                              Attitude attitudeTowardsPlayer,
+                              Behavior behavior) {
         super(name, location);
+        this.attitudeTowardsPlayer = attitudeTowardsPlayer;
+        this.behavior = behavior;
     }
 
     @Override
@@ -35,6 +39,6 @@ public class NonPlayerCharacter extends Character {
         return Collections.emptyList();
     }
 
-    Attitude attitudeTowardsPlayer = Attitude.NEUTRAL;
-    Behavior behavior;
+    private Attitude attitudeTowardsPlayer;
+    private Behavior behavior;
 }

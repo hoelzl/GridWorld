@@ -1,5 +1,5 @@
 package gridworld.core;
 
 public interface LevelPopulationStrategy {
-    void populateLevel(Difficulty difficulty);
+    void populateLevel(Level level, Difficulty difficulty);
 }

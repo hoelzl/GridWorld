@@ -8,5 +8,11 @@ public interface Behavior {
     List<Command> getCommandsForCurrentTurn(NonPlayerCharacter character,
                                             Level level);
 
-    void tick(NonPlayerCharacter nonPlayerCharacter, Level level);
+    default void tick(NonPlayerCharacter nonPlayerCharacter, Level level) {
+        List<Command> commands =
+                getCommandsForCurrentTurn(nonPlayerCharacter, level);
+        for (var command : commands) {
+            command.execute();
+        }
+    }
 }

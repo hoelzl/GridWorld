@@ -11,7 +11,8 @@ class LevelTest {
     @Test
     void noteCharacterMove() {
         NonPlayerCharacter testCharacter =
-                new NonPlayerCharacter("test character", unit.get(0, 0));
+                new NonPlayerCharacter("test character", unit.get(0, 0),
+                        Attitude.NEUTRAL, null);
         Location newLocation = unit.get(0, 1);
         CharacterObserverSpy observer = new CharacterObserverSpy();
         unit.register(observer);

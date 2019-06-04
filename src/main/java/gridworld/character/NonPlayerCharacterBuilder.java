@@ -8,6 +8,8 @@ import gridworld.core.Location;
 import java.util.Random;
 
 public class NonPlayerCharacterBuilder {
+    private static int serial = 0;
+
     public NonPlayerCharacterBuilder(Level level, Behavior defaultBehavior) {
         assert level != null;
 
@@ -21,7 +23,7 @@ public class NonPlayerCharacterBuilder {
     }
 
     private void reset() {
-        name = "<unnamed character>";
+        name = "<unnamed character " + serial++ + ">";
         location = pickRandomLocation(level);
         attitudeTowardsPlayer = Attitude.NEUTRAL;
         behavior = defaultBehavior;
@@ -34,9 +36,12 @@ public class NonPlayerCharacterBuilder {
     }
 
     public NonPlayerCharacter build() {
-        var result = new NonPlayerCharacter(name, location);
-        result.attitudeTowardsPlayer = attitudeTowardsPlayer;
-        result.behavior = behavior;
+        assert name != null && location != null;
+        assert attitudeTowardsPlayer != null;
+
+        var result =
+                new NonPlayerCharacter(name, location, attitudeTowardsPlayer,
+                        behavior);
         reset();
         return result;
     }
@@ -61,7 +66,6 @@ public class NonPlayerCharacterBuilder {
         this.behavior = behavior;
         return this;
     }
-
     private Attitude attitudeTowardsPlayer;
     private Behavior defaultBehavior;
     private Behavior behavior;
