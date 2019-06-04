@@ -9,7 +9,7 @@ class LevelFactoryTest {
 
     @Test
     void createLevel_createsLevelWithCorrectDimensions() {
-        var level = unit.createLevel(Difficulty.MEDIUM, 10, 6);
+        Level level = unit.createLevel(Difficulty.MEDIUM, 10, 6);
 
         assertThat(level.getWidth(), is(10));
         assertThat(level.getHeight(), is(6));

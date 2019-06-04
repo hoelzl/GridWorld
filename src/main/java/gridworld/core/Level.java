@@ -37,7 +37,7 @@ public class Level {
     public void noteCharacterCreation(GameCharacter character) {
         assert character != null;
         addCharacter(character);
-        for (var observer : characterObservers) {
+        for (CharacterObserver observer : characterObservers) {
             observer.onCharacterCreation(character);
         }
     }
@@ -47,14 +47,14 @@ public class Level {
         assert character != null;
         assert newLocation != null;
 
-        for (var observer : characterObservers) {
+        for (CharacterObserver observer : characterObservers) {
             observer.onCharacterMove(character, newLocation);
         }
     }
 
     public void noteCharacterDeath(GameCharacter character) {
         assert character != null;
-        for (var observer : characterObservers) {
+        for (CharacterObserver observer : characterObservers) {
             observer.onCharacterDeath(character);
         }
         removeCharacter(character);

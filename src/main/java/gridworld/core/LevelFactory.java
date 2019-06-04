@@ -12,9 +12,10 @@ public class LevelFactory {
         return createLevel(difficulty, width, height, Collections.emptyList());
     }
 
+    @SuppressWarnings("WeakerAccess")
     public Level createLevel(Difficulty difficulty, int width, int height,
                              List<CharacterObserver> observers) {
-        var level = new Level(width, height);
+        Level level = new Level(width, height);
         level.registerAll(observers);
         populationStrategy.populateLevel(level, difficulty);
         return level;
