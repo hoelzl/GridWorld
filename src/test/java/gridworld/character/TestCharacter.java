@@ -1,6 +1,7 @@
 package gridworld.character;
 
 import gridworld.core.Attitude;
+import gridworld.core.CharacterInterface;
 import gridworld.core.Location;
 
 public class TestCharacter extends Character {
@@ -18,7 +19,7 @@ public class TestCharacter extends Character {
     }
 
     @Override
-    public void attack(Character targetToAttack) {
+    public void attack(CharacterInterface targetToAttack) {
 
     }
 }

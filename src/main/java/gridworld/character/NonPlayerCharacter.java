@@ -27,7 +27,7 @@ public class NonPlayerCharacter extends Character {
     }
 
     @Override
-    public void attack(Character targetToAttack) {
+    public void attack(CharacterInterface targetToAttack) {
         // TODO
     }
 

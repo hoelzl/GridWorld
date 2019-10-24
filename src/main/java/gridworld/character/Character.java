@@ -1,10 +1,10 @@
 package gridworld.character;
 
-import gridworld.core.Attitude;
+import gridworld.core.CharacterInterface;
 import gridworld.core.Direction;
 import gridworld.core.Location;
 
-public abstract class Character {
+public abstract class Character implements CharacterInterface {
     Character(String name, Location location) {
         assert location != null;
 
@@ -13,10 +13,12 @@ public abstract class Character {
         location.getLevel().noteCharacterCreation(this);
     }
 
+    @Override
     public void die() {
         location.getLevel().noteCharacterDeath(this);
     }
 
+    @Override
     public void move(Direction direction) {
         Location newLocation = location.getNeighbor(direction);
 
@@ -27,6 +29,7 @@ public abstract class Character {
         setLocation(newLocation);
     }
 
+    @Override
     public Location getLocation() {
         return location;
     }
@@ -44,15 +47,10 @@ public abstract class Character {
         }
     }
 
+    @Override
     public String getName() {
         return name;
     }
-
-    public abstract void tick();
-
-    public abstract Attitude getAttitudeTowardsPlayer();
-
-    public abstract void attack(Character targetToAttack);
 
     private String name;
     private Location location;

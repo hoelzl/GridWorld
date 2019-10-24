@@ -1,7 +1,5 @@
 package gridworld.core;
 
-import gridworld.character.Character;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -36,7 +34,7 @@ public class Level {
         characterObservers.remove(observer);
     }
 
-    public void noteCharacterCreation(Character character) {
+    public void noteCharacterCreation(CharacterInterface character) {
         assert character != null;
         addCharacter(character);
         for (CharacterObserver observer : characterObservers) {
@@ -44,7 +42,7 @@ public class Level {
         }
     }
 
-    public void noteCharacterMove(Character character, Location newLocation) {
+    public void noteCharacterMove(CharacterInterface character, Location newLocation) {
         assert character != null;
         assert newLocation != null;
 
@@ -53,7 +51,7 @@ public class Level {
         }
     }
 
-    public void noteCharacterDeath(Character character) {
+    public void noteCharacterDeath(CharacterInterface character) {
         assert character != null;
         for (CharacterObserver observer : characterObservers) {
             observer.onCharacterDeath(character);
@@ -98,21 +96,21 @@ public class Level {
         return height;
     }
 
-    private void addCharacter(Character character) {
+    private void addCharacter(CharacterInterface character) {
         characters.add(character);
     }
 
-    private void removeCharacter(Character character) {
+    private void removeCharacter(CharacterInterface character) {
         characters.remove(character);
     }
 
-    public List<Character> getCharacters() {
+    public List<CharacterInterface> getCharacters() {
         return characters;
     }
 
     private int width;
     private int height;
     private List<Location> board;
-    private List<Character> characters = new ArrayList<>();
+    private List<CharacterInterface> characters = new ArrayList<>();
     private List<CharacterObserver> characterObservers = new ArrayList<>();
 }

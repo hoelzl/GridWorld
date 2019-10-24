@@ -1,6 +1,6 @@
 package gridworld.app;
 
-import gridworld.character.Character;
+import gridworld.core.CharacterInterface;
 import gridworld.core.CharacterObserver;
 import gridworld.core.Location;
 import org.beryx.textio.TextTerminal;
@@ -11,14 +11,14 @@ public class AppCharacterObserver implements CharacterObserver {
     }
 
     @Override
-    public void onCharacterCreation(Character character) {
+    public void onCharacterCreation(CharacterInterface character) {
         Location location = character.getLocation();
         terminal.printf("Created character %s at (%d, %d).\n",
                 character.getName(), location.getW(), location.getH());
     }
 
     @Override
-    public void onCharacterMove(Character character, Location newLocation) {
+    public void onCharacterMove(CharacterInterface character, Location newLocation) {
         Location location = character.getLocation();
         terminal.printf("Character %s moved from (%d, %d) to (%d, %d).\n",
                 character.getName(), location.getW(), location.getH(),
@@ -26,7 +26,7 @@ public class AppCharacterObserver implements CharacterObserver {
     }
 
     @Override
-    public void onCharacterDeath(Character character) {
+    public void onCharacterDeath(CharacterInterface character) {
         terminal.printf("Character %s died.\n", character.getName());
     }
 

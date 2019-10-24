@@ -1,7 +1,5 @@
 package gridworld.core;
 
-import gridworld.character.Character;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,11 +18,11 @@ public class Location {
         neighbors.put(direction, neighbor);
     }
 
-    public void removeCharacter(Character character) {
+    public void removeCharacter(CharacterInterface character) {
         characters.remove(character);
     }
 
-    public void addCharacter(Character character) {
+    public void addCharacter(CharacterInterface character) {
         assert !characters.contains(character);
         characters.add(character);
     }
@@ -33,13 +31,13 @@ public class Location {
         return level;
     }
 
-    public List<Character> getCharacters() {
+    public List<CharacterInterface> getCharacters() {
         return characters;
     }
 
     private Level level;
     private Map<Direction, Location> neighbors = new HashMap<>();
-    private List<Character> characters = new ArrayList<>();
+    private List<CharacterInterface> characters = new ArrayList<>();
 
     public int getW() {
         return w;

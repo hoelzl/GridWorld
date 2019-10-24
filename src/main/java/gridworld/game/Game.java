@@ -21,7 +21,7 @@ public class Game {
 
     public void tick() {
         numTicks++;
-        for (Character character : level.getCharacters()) {
+        for (CharacterInterface character : level.getCharacters()) {
             character.tick();
         }
         if (numTicks > 5) {
