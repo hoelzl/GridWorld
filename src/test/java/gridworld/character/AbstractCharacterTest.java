@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-class CharacterTest {
+class AbstractCharacterTest {
 
     @Test
     void constructor_triggersObserverUpdate() {
@@ -72,7 +72,6 @@ class CharacterTest {
         assertThat(observer.wasOnCharacterMoveCalled, is(true));
         assertThat(observer.wasOnCharacterDeathCalled, is(false));
         assertThat(observer.character, is(unit));
-        assertThat(observer.newLocation, is(level.get(initialW, initialH + 1)));
     }
 
     private final int initialW = 2;
