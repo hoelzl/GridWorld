@@ -1,6 +1,6 @@
 package gridworld.character;
 
-import gridworld.character.Character;
+import gridworld.core.Character;
 import gridworld.core.Location;
 
 public class CharacterMove {

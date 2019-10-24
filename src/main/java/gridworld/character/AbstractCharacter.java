@@ -1,11 +1,11 @@
 package gridworld.character;
 
-import gridworld.core.CharacterInterface;
+import gridworld.core.Character;
 import gridworld.core.Direction;
 import gridworld.core.Location;
 
-public abstract class Character implements CharacterInterface {
-    Character(String name, Location location) {
+public abstract class AbstractCharacter implements Character {
+    AbstractCharacter(String name, Location location) {
         assert location != null;
 
         this.name = name;

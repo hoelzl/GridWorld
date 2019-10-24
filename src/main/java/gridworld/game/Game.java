@@ -1,9 +1,9 @@
 package gridworld.game;
 
 import gridworld.behaviors.Behavior_MoveRandomly;
-import gridworld.character.Character;
 import gridworld.character.Player;
 import gridworld.core.*;
+import gridworld.core.Character;
 import gridworld.level.LevelPopulationStrategy_DistributeRandomElements;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class Game {
 
     public void tick() {
         numTicks++;
-        for (CharacterInterface character : level.getCharacters()) {
+        for (Character character : level.getCharacters()) {
             character.tick();
         }
         if (numTicks > 5) {

@@ -1,6 +1,6 @@
 package gridworld.commands;
 
-import gridworld.character.Character;
+import gridworld.character.AbstractCharacter;
 import gridworld.core.Command;
 import gridworld.core.Direction;
 
@@ -9,7 +9,7 @@ import java.util.Random;
 public class Command_MoveInRandomDirection implements Command {
     private static Direction[] directions = Direction.values();
 
-    public Command_MoveInRandomDirection(Character character,
+    public Command_MoveInRandomDirection(AbstractCharacter character,
                                          double moveProbability) {
         this.character = character;
         Random random = new Random();
@@ -31,7 +31,7 @@ public class Command_MoveInRandomDirection implements Command {
         return "Move in a random direction";
     }
 
-    private Character character;
+    private AbstractCharacter character;
     private boolean performMove = false;
     private Direction direction = Direction.NORTH;
 }

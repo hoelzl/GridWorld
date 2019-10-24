@@ -1,10 +1,10 @@
 package gridworld.commands;
 
-import gridworld.character.Character;
+import gridworld.character.AbstractCharacter;
 import gridworld.core.Command;
 
 public class Command_AttackTarget implements Command {
-    public Command_AttackTarget(Character character, Character targetToAttack) {
+    public Command_AttackTarget(AbstractCharacter character, AbstractCharacter targetToAttack) {
         this.character = character;
         this.targetToAttack = targetToAttack;
     }
@@ -19,6 +19,6 @@ public class Command_AttackTarget implements Command {
         return null;
     }
 
-    private Character character;
-    private Character targetToAttack;
+    private AbstractCharacter character;
+    private AbstractCharacter targetToAttack;
 }

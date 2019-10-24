@@ -81,6 +81,6 @@ class CharacterTest {
     private Level level =
             new LevelFactory(new LevelPopulationStrategySpy()).createLevel(
                     Difficulty.MEDIUM, 12, 8);
-    private Character unit =
+    private AbstractCharacter unit =
             new TestCharacter("Test Character", level.get(initialW, initialH));
 }

@@ -1,11 +1,11 @@
 package gridworld.commands;
 
-import gridworld.character.Character;
+import gridworld.character.AbstractCharacter;
 import gridworld.core.Command;
 import gridworld.core.Direction;
 
 public class Command_MoveInGivenDirection implements Command {
-    public Command_MoveInGivenDirection(Character character,
+    public Command_MoveInGivenDirection(AbstractCharacter character,
                                         Direction direction) {
         this.character = character;
         this.direction = direction;
@@ -21,6 +21,6 @@ public class Command_MoveInGivenDirection implements Command {
         return "Move in direction " + direction.toString();
     }
 
-    private Character character;
+    private AbstractCharacter character;
     private Direction direction;
 }

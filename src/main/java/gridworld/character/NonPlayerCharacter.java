@@ -1,11 +1,12 @@
 package gridworld.character;
 
 import gridworld.core.*;
+import gridworld.core.Character;
 
 import java.util.Collections;
 import java.util.List;
 
-public class NonPlayerCharacter extends Character {
+public class NonPlayerCharacter extends AbstractCharacter {
     public NonPlayerCharacter(String name, Location location,
                               Attitude attitudeTowardsPlayer,
                               Behavior behavior) {
@@ -27,7 +28,7 @@ public class NonPlayerCharacter extends Character {
     }
 
     @Override
-    public void attack(CharacterInterface targetToAttack) {
+    public void attack(Character targetToAttack) {
         // TODO
     }
 

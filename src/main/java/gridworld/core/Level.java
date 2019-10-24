@@ -34,7 +34,7 @@ public class Level {
         characterObservers.remove(observer);
     }
 
-    public void noteCharacterCreation(CharacterInterface character) {
+    public void noteCharacterCreation(Character character) {
         assert character != null;
         addCharacter(character);
         for (CharacterObserver observer : characterObservers) {
@@ -42,7 +42,7 @@ public class Level {
         }
     }
 
-    public void noteCharacterMove(CharacterInterface character, Location newLocation) {
+    public void noteCharacterMove(Character character, Location newLocation) {
         assert character != null;
         assert newLocation != null;
 
@@ -51,7 +51,7 @@ public class Level {
         }
     }
 
-    public void noteCharacterDeath(CharacterInterface character) {
+    public void noteCharacterDeath(Character character) {
         assert character != null;
         for (CharacterObserver observer : characterObservers) {
             observer.onCharacterDeath(character);
@@ -96,21 +96,21 @@ public class Level {
         return height;
     }
 
-    private void addCharacter(CharacterInterface character) {
+    private void addCharacter(Character character) {
         characters.add(character);
     }
 
-    private void removeCharacter(CharacterInterface character) {
+    private void removeCharacter(Character character) {
         characters.remove(character);
     }
 
-    public List<CharacterInterface> getCharacters() {
+    public List<Character> getCharacters() {
         return characters;
     }
 
     private int width;
     private int height;
     private List<Location> board;
-    private List<CharacterInterface> characters = new ArrayList<>();
+    private List<Character> characters = new ArrayList<>();
     private List<CharacterObserver> characterObservers = new ArrayList<>();
 }

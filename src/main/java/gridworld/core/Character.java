@@ -1,6 +1,6 @@
 package gridworld.core;
 
-public interface CharacterInterface {
+public interface Character {
     void die();
 
     void move(Direction direction);
@@ -13,5 +13,5 @@ public interface CharacterInterface {
 
     Attitude getAttitudeTowardsPlayer();
 
-    void attack(CharacterInterface targetToAttack);
+    void attack(Character targetToAttack);
 }

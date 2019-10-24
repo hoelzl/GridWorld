@@ -1,10 +1,10 @@
 package gridworld.character;
 
 import gridworld.core.Attitude;
-import gridworld.core.CharacterInterface;
+import gridworld.core.Character;
 import gridworld.core.Location;
 
-public class Player extends Character {
+public class Player extends AbstractCharacter {
     public Player(String name, Location location) {
         super(name, location);
     }
@@ -20,7 +20,7 @@ public class Player extends Character {
     }
 
     @Override
-    public void attack(CharacterInterface targetToAttack) {
+    public void attack(Character targetToAttack) {
         // TODO
     }
 }
