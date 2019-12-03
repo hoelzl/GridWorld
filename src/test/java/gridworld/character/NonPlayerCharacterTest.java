@@ -1,12 +1,13 @@
 package gridworld.character;
 
-import gridworld.core.Difficulty;
-import gridworld.core.Level;
-import gridworld.core.LevelFactory;
-import gridworld.core.LevelPopulationStrategySpy;
+import gridworld.core.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
 
 class NonPlayerCharacterTest {
@@ -21,8 +22,9 @@ class NonPlayerCharacterTest {
 
     @Test
     void getCommandsForCurrentTurn() {
-        unit.getCommandsForCurrentTurn(level);
+        List<Command> commands = unit.getCommandsForCurrentTurn(level);
 
+        assertThat(commands, empty());
         assertThat(behavior.wasTickCalled, is(false));
         assertThat(behavior.wasGetCommandsForCurrentTurnCalled, is(true));
     }
