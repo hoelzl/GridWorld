@@ -21,44 +21,6 @@ public class Level {
         }
     }
 
-    public void register(CharacterObserver observer) {
-        characterObservers.add(observer);
-    }
-
-    @SuppressWarnings("WeakerAccess")
-    public void registerAll(List<CharacterObserver> observers) {
-        characterObservers.addAll(observers);
-    }
-
-    public void unregister(CharacterObserver observer) {
-        characterObservers.remove(observer);
-    }
-
-    public void noteCharacterCreation(Character character) {
-        assert character != null;
-        addCharacter(character);
-        for (CharacterObserver observer : characterObservers) {
-            observer.onCharacterCreation(character);
-        }
-    }
-
-    public void noteCharacterMove(Character character, Location newLocation) {
-        assert character != null;
-        assert newLocation != null;
-
-        for (CharacterObserver observer : characterObservers) {
-            observer.onCharacterMove(character, newLocation);
-        }
-    }
-
-    public void noteCharacterDeath(Character character) {
-        assert character != null;
-        for (CharacterObserver observer : characterObservers) {
-            observer.onCharacterDeath(character);
-        }
-        removeCharacter(character);
-    }
-
     private void computeNeighborsForLocationAt(int w, int h) {
         computeNeighbor(Direction.NORTH, w, h, () -> h < height - 1,
                 () -> get(w, h + 1));
@@ -96,21 +58,7 @@ public class Level {
         return height;
     }
 
-    private void addCharacter(Character character) {
-        characters.add(character);
-    }
-
-    private void removeCharacter(Character character) {
-        characters.remove(character);
-    }
-
-    public List<Character> getCharacters() {
-        return characters;
-    }
-
     private int width;
     private int height;
     private List<Location> board;
-    private List<Character> characters = new ArrayList<>();
-    private List<CharacterObserver> characterObservers = new ArrayList<>();
 }

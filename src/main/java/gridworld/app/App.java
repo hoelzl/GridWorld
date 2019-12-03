@@ -18,7 +18,7 @@ public class App {
         App app = new App();
         app.terminal.printf("Starting Game!\n\n");
         app.terminal.printf("Game over.\n");
-        System.exit(0);
+        // System.exit(0);
     }
     private StringInputReader inputReader;
 }
