@@ -38,5 +38,12 @@ class LevelTest {
         assertThat(unit.getHeight(), is(8));
     }
 
+    @Test
+    void get_returnsLocationWithCorrectWAndHIndices() {
+        Location l = unit.get(3, 5);
+        assertThat(l.getW(), is(3));
+        assertThat(l.getH(), is(5));
+    }
+
     private Level unit = new Level(12, 8);
 }
